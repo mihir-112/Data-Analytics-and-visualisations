@@ -32,3 +32,6 @@ pca_data = pca.fit_transform(standardized_data)
 pca_df = pd.DataFrame(pca_data, columns=['PC1', 'PC2'])
 
 print(pca_df)
+
+print(pca.explained_variance_ratio_)
+print(pca.explained_variance_ratio_.sum())
