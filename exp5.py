@@ -37,7 +37,52 @@ df["Marks_Treated"] = np.where(df["Marks"] < lower, lower, df["Marks"])
 df["Marks_Treated"] = np.where(df["Marks_Treated"] > upper, upper, df["Marks_Treated"])
 
 print(df)
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+# Create the box plot
+plt.figure(figsize=(9, 5))
+
+sns.boxplot(x=df["Marks"], color="skyblue")
+
+# Highlight the outliers detected by the IQR method
+plt.scatter(
+    outliers["Marks"],
+    [0] * len(outliers),
+    color="red",
+    s=120,
+    label="Detected Outlier",
+    zorder=5
+)
+
+# Label each detected outlier
+for _, row in outliers.iterrows():
+    plt.annotate(
+        f'Student {row["Student"]}: {row["Marks"]}',
+        (row["Marks"], 0),
+        xytext=(0, 20),
+        textcoords="offset points",
+        ha="center",
+        color="red",
+        fontweight="bold"
+    )
+
+# Display IQR limits
+plt.axvline(
+    lower_limit, color="green", linestyle="--",
+    label=f"Lower Limit = {lower_limit}"
+)
+plt.axvline(
+    upper_limit, color="orange", linestyle="--",
+    label=f"Upper Limit = {upper_limit}"
+)
+
+plt.title("IQR Outlier Detection in Student Marks")
+plt.xlabel("Marks")
+plt.yticks([])
+plt.legend()
+plt.grid(axis="x", linestyle="--", alpha=0.4)
+plt.show()
 df_capped = df.copy()
 df["Marks_Treated"] = df["Marks"].clip(lower, upper)
 
