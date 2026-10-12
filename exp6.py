@@ -18,3 +18,10 @@ normalized_data = scaler.fit_transform(df)
 normalized_df = pd.DataFrame(normalized_data, columns=df.columns)
 print("Normalised Data:")
 print(normalized_df)
+
+scaler = StandardScaler()
+standardized_data = scaler.fit_transform(df)
+
+standardized_df = pd.DataFrame(standardized_data, columns=df.columns)
+
+print(standardized_df)
