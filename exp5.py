@@ -69,12 +69,12 @@ for _, row in outliers.iterrows():
 
 # Display IQR limits
 plt.axvline(
-    lower_limit, color="green", linestyle="--",
-    label=f"Lower Limit = {lower_limit}"
+    lower, color="green", linestyle="--",
+    label=f"Lower Limit = {lower}"
 )
 plt.axvline(
-    upper_limit, color="orange", linestyle="--",
-    label=f"Upper Limit = {upper_limit}"
+    upper, color="orange", linestyle="--",
+    label=f"Upper Limit = {upper}"
 )
 
 plt.title("IQR Outlier Detection in Student Marks")
